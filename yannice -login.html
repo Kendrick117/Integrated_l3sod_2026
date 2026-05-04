@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Web App Portal</title>
+
+    <style>
+        /* Modern CSS Variables for easy updates */
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --secondary: #10b981;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass: rgba(255, 255, 255, 0.95);
+            --text: #1f2937;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text);
+        }
+
+        /* WELCOME PAGE SECTION */
+        #welcome-page {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        #welcome-page h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+        }
+
+        #welcome-page p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-get-started {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary);
+            background: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn-get-started:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        }
+
+        /* FORM PAGE SECTION (Hidden initially) */
+        #main-app {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.8s ease;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar button {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .navbar button:hover, .navbar button.nav-active {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+        }
+
+        /* Form Styling */
+        .form-container {
+            width: 100%;
+            max-width: 450px;
+            margin: 50px auto;
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            display: none;
+            transform: scale(0.95);
+        }
+
+        .form-container.active {
+            display: block;
+            animation: slideUp 0.5s forwards;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        button.submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button.submit:hover {
+            background: var(--primary-hover);
+            letter-spacing: 1px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .navbar { gap: 5px; padding: 10px; }
+            .navbar button { padding: 8px 10px; font-size: 0.8rem; }
+            .form-container { width: 90%; margin: 20px auto; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- WELCOME PAGE -->
+    <section id="welcome-page">
+        <h1>Welcome to Student Registration Form</h1>
+        <p>Your all-in-one management system for students and creators.</p>
+        <button class="btn-get-started" onclick="enterApp()">Get Started &rarr;</button>
+    </section>
+
+    <!-- MAIN APP CONTENT -->
+    <div id="main-app">
+        <nav class="navbar">
+            <button id="nav-login" onclick="showForm('login', this)">Login</button>
+            <button id="nav-student" onclick="showForm('student', this)">Student</button>
+            <button id="nav-entertainment" onclick="showForm('entertainment', this)">Entertainment</button>
+            <button id="nav-course" onclick="showForm('course', this)">Courses</button>
+            <button id="nav-book" onclick="showForm('book', this)">Books</button>
+        </nav>
+
+        <!-- LOGIN FORM -->
+        <div id="login" class="form-container active">
+            <h2>Welcome Back</h2>
+            <label>Email Address</label>
+            <input type="email" placeholder="name@company.com">
+            <label>Password</label>
+            <input type="password" placeholder="••••••••">
+            <button class="submit">Sign In</button>
+        </div>
+
+        <!-- STUDENT REGISTRATION -->
+        <div id="student" class="form-container">
+            <h2>Student Enrollment</h2>
+            <label>Full Name</label>
+            <input type="text" placeholder="John Doe">
+            <label>Class/Year</label>
+            <input type="text" placeholder="Computer Science - Year 2">
+            <label>Email</label>
+            <input type="email" placeholder="student@university.edu">
+            <button class="submit">Complete Registration</button>
+        </div>
+
+        <!-- ENTERTAINMENT FORM -->
+        <div id="entertainment" class="form-container">
+            <h2>Personal Interests</h2>
+            <label>Favorite Movie</label>
+            <input type="text" placeholder="Inception">
+            <label>Favorite Music Genre</label>
+            <input type="text" placeholder="Synthwave / Jazz">
+            <button class="submit">Save Preferences</button>
+        </div>
+
+        <!-- COURSE REGISTRATION -->
+        <div id="course" class="form-container">
+            <h2>New Course Signup</h2>
+            <label>Course Name</label>
+            <input type="text" placeholder="Advanced Web Development">
+            <label>Department</label>
+            <input type="text" placeholder="Information Technology">
+            <button class="submit">Enroll Now</button>
+        </div>
+
+        <!-- BOOK REGISTRATION -->
+        <div id="book" class="form-container">
+            <h2>Library Entry</h2>
+            <label>Book Title</label>
+            <input type="text" placeholder="The Great Gatsby">
+            <label>Author</label>
+            <input type="text" placeholder="F. Scott Fitzgerald">
+            <button class="submit">Add to Catalog</button>
+        </div>
+    </div>
+
+    <script>
+        // Transition from Welcome Page to Form Page
+        function enterApp() {
+            document.getElementById('welcome-page').style.display = 'none';
+            document.getElementById('main-app').style.display = 'block';
+            // Set Login as active nav by default
+            document.getElementById('nav-login').classList.add('nav-active');
+        }
+
+        // Switch between forms
+        function showForm(formId, btn) {
+            // Remove active classes from all forms
+            let forms = document.querySelectorAll('.form-container');
+            forms.forEach(form => form.classList.remove('active'));
+
+            // Remove active class from all buttons
+            let buttons = document.querySelectorAll('.navbar button');
+            buttons.forEach(b => b.classList.remove('nav-active'));
+
+            // Show current form and highlight button
+            document.getElementById(formId).classList.add('active');
+            btn.classList.add('nav-active');
+        }
+    </script>
+
+</body>
+</html>
