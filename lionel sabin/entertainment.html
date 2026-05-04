@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Entertainment Portal – Innovator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body style="margin:0;padding:0;background:#100820;font-family:'DM Sans',sans-serif;min-height:100vh;">
+
+  <!-- Top Bar -->
+  <div style="background:linear-gradient(90deg,#2d1054,#100820);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #a855f7;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span style="font-size:28px;">🎬</span>
+      <div>
+        <div style="color:#fff;font-family:'Playfair Display',serif;font-size:16px;">Entertainment Portal</div>
+        <div style="color:#c084fc;font-size:11px;">Innovator Company Limited</div>
+      </div>
+    </div>
+    <a href="login.html" style="color:#c084fc;font-size:13px;text-decoration:none;">← Back to Portals</a>
+  </div>
+
+  <!-- Hero Banner -->
+  <div style="background:linear-gradient(135deg,#2d1054 0%,#6b21a8 60%,#7c3aed 100%);padding:40px 32px;text-align:center;position:relative;overflow:hidden;">
+    <div style="font-size:48px;margin-bottom:12px;">🎬 🎵 🎮 🎭</div>
+    <h1 style="color:#fff;font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,36px);margin:0 0 8px;">Entertainment Registration</h1>
+    <p style="color:#e9d5ff;font-size:14px;margin:0;">Register to access movies, music, gaming & live events</p>
+  </div>
+
+  <!-- Featured Cards -->
+  <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;padding:28px 24px 0;max-width:900px;margin:0 auto;">
+    <div style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);border-radius:14px;padding:16px 20px;text-align:center;flex:1;min-width:120px;">
+      <div style="font-size:28px;">🎥</div>
+      <div style="color:#e9d5ff;font-size:13px;font-weight:600;margin-top:6px;">Movies</div>
+      <div style="color:#a855f7;font-size:11px;">500+ Titles</div>
+    </div>
+    <div style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);border-radius:14px;padding:16px 20px;text-align:center;flex:1;min-width:120px;">
+      <div style="font-size:28px;">🎵</div>
+      <div style="color:#e9d5ff;font-size:13px;font-weight:600;margin-top:6px;">Music</div>
+      <div style="color:#a855f7;font-size:11px;">10K+ Tracks</div>
+    </div>
+    <div style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);border-radius:14px;padding:16px 20px;text-align:center;flex:1;min-width:120px;">
+      <div style="font-size:28px;">🎮</div>
+      <div style="color:#e9d5ff;font-size:13px;font-weight:600;margin-top:6px;">Gaming</div>
+      <div style="color:#a855f7;font-size:11px;">200+ Games</div>
+    </div>
+    <div style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);border-radius:14px;padding:16px 20px;text-align:center;flex:1;min-width:120px;">
+      <div style="font-size:28px;">🎭</div>
+      <div style="color:#e9d5ff;font-size:13px;font-weight:600;margin-top:6px;">Events</div>
+      <div style="color:#a855f7;font-size:11px;">Live Shows</div>
+    </div>
+    <div style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);border-radius:14px;padding:16px 20px;text-align:center;flex:1;min-width:120px;">
+      <div style="font-size:28px;">📺</div>
+      <div style="color:#e9d5ff;font-size:13px;font-weight:600;margin-top:6px;">Series</div>
+      <div style="color:#a855f7;font-size:11px;">TV & Web</div>
+    </div>
+  </div>
+
+  <!-- Registration Form -->
+  <div style="max-width:620px;margin:28px auto;padding:0 20px 60px;">
+    <div style="background:#1a0a2e;border:1px solid #3b1d6e;border-radius:20px;padding:32px;">
+      <h2 style="color:#fff;font-family:'Playfair Display',serif;font-size:22px;margin:0 0 24px;">Create Entertainment Account</h2>
+
+      <form action="login.html" method="get">
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+          <div style="flex:1;min-width:140px;">
+            <label style="color:#c084fc;font-size:12px;display:block;margin-bottom:6px;">First Name *</label>
+            <input type="text" required placeholder="Your first name" style="width:100%;box-sizing:border-box;background:#100820;border:1px solid #3b1d6e;color:#fff;padding:10px 14px;border-radius:10px;font-size:14px;outline:none;" onfocus="this.style.borderColor='#a855f7'" onblur="this.style.borderColor='#3b1d6e'"/>
+          </div>
+          <div style="flex:1;min-width:140px;">
+            <label style="color:#c084fc;font-size:12px;display:block;margin-bottom:6px;">Last Name *</label>
+            <input type="text" required placeholder="Your last name" style="width:100%;box-sizing:border-box;background:#100820;border:1px solid #3b1d6e;color:#fff;padding:10px 14px;border-radius:10px;font-size:14px;outline:none;" onfocus="this.style.borderColor='#a855f7'" onblur="this.style.borderColor='#3b1d6e'"/>
+          </div>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="color:#c084fc;font-size:12px;display:block;margin-bottom:6px;">Username *</label>
+          <input type="text" required placeholder="e.g. entertainment_fan" style="width:100%;box-sizing:border-box;background:#100820;border:1px solid #3b1d6e;color:#fff;padding:10px 14px;border-radius:10px;font-size:14px;outline:none;" onfocus="this.style.borderColor='#a855f7'" onblur="this.style.borderColor='#3b1d6e'"/>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="color:#c084fc;font-size:12px;display:block;margin-bottom:6px;">Email Address *</label>
+          <input type="email" required placeholder="your@email.com" style="width:100%;box-sizing:border-box;background:#100820;border:1px solid #3b1d6e;color:#fff;padding:10px 14px;border-radius:10px;font-size:14px;outline:none;" onfocus="this.style.borderColor='#a855f7'" onblur="this.style.borderColor='#3b1d6e'"/>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="color:#c084fc;font-size:12px;display:block;margin-bottom:6px;">Preferred Entertainment Category *</label>
+          <select required style="width:100%;background:#100820;border:1px solid #3b1d6e;color:#fff;padding:10px 14px;border-radius:10px;font-size:14px;outline:none;" onfocus="this.style.borderColor='#a855f7'" onblur="this.style.borderColor='#3b1d6e'">
+            <option value="" disabled selected>Choose your interest</option>
+            <option>🎥 Movies & Cinema</option>
+            <option>🎵 Music & Concerts</option>
+            <option>🎮 Video Games</option>
+            <option>🎭 Live Theatre & Events</option>
+            <option>📺 TV Series & Streaming</option>
+            <option>🎨 Arts & Culture</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+          <div style="flex:1;min-width:140px;">
+            <label style="color:#c084fc;font-size:12px;display:block;margin-bottom:6px;">Subscription Plan *</label>
+            <select required style="width:100%;background:#100820;border:1px solid #3b1d6e;color:#fff;padding:10px 14px;border-radius:10px;font-size:14px;outline:none;">
+              <option value="" disabled selected>Select plan</option>
+              <option>🆓 Free (Basic)</option>
+              <option>⭐ Standard – $5/mo</option>
+              <option>💎 Premium – $12/mo</option>
+            </select>
+          </div>
+          <div style="flex:1;min-width:140px;">
+            <label style="color:#c084fc;font-size:12px;display:block;margin-bottom:6px;">Country</label>
+            <input type="text" placeholder="Rwanda" value="Rwanda" style="width:100%;box-sizing:border-box;background:#100820;border:1px solid #3b1d6e;color:#fff;padding:10px 14px;border-radius:10px;font-size:14px;outline:none;"/>
+          </div>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="color:#c084fc;font-size:12px;display:block;margin-bottom:6px;">Password *</label>
+          <input type="password" required placeholder="Create a password" style="width:100%;box-sizing:border-box;background:#100820;border:1px solid #3b1d6e;color:#fff;padding:10px 14px;border-radius:10px;font-size:14px;outline:none;" onfocus="this.style.borderColor='#a855f7'" onblur="this.style.borderColor='#3b1d6e'"/>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="color:#c084fc;font-size:12px;display:block;margin-bottom:6px;">Confirm Password *</label>
+          <input type="password" required placeholder="Confirm password" style="width:100%;box-sizing:border-box;background:#100820;border:1px solid #3b1d6e;color:#fff;padding:10px 14px;border-radius:10px;font-size:14px;outline:none;" onfocus="this.style.borderColor='#a855f7'" onblur="this.style.borderColor='#3b1d6e'"/>
+        </div>
+        <!-- Preferences -->
+        <div style="background:#100820;border:1px solid #3b1d6e;border-radius:12px;padding:16px;margin-bottom:20px;">
+          <div style="color:#c084fc;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">Notification Preferences</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <label style="display:flex;align-items:center;gap:10px;color:#e9d5ff;font-size:13px;cursor:pointer;"><input type="checkbox" checked/> New Movie Releases</label>
+            <label style="display:flex;align-items:center;gap:10px;color:#e9d5ff;font-size:13px;cursor:pointer;"><input type="checkbox" checked/> Upcoming Events & Concerts</label>
+            <label style="display:flex;align-items:center;gap:10px;color:#e9d5ff;font-size:13px;cursor:pointer;"><input type="checkbox"/> Weekly Newsletter</label>
+          </div>
+        </div>
+        <div style="margin-bottom:24px;display:flex;align-items:flex-start;gap:10px;">
+          <input type="checkbox" required id="agree2" style="margin-top:3px;"/>
+          <label for="agree2" style="color:#9ca3af;font-size:13px;">I agree to the <span style="color:#a855f7;">Terms of Service</span> and <span style="color:#a855f7;">Privacy Policy</span></label>
+        </div>
+        <button type="submit" style="width:100%;background:linear-gradient(90deg,#7e22ce,#a855f7);color:#fff;padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;"
+          onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+          Join Entertainment Portal 🎬
+        </button>
+        <p style="text-align:center;color:#9ca3af;font-size:13px;margin:16px 0 0;">Already a member? <a href="login.html" style="color:#a855f7;text-decoration:none;font-weight:600;">Login</a></p>
+      </form>
+    </div>
+  </div>
+
+  <footer style="text-align:center;padding:20px;border-top:1px solid #2d1054;color:#4b5563;font-size:12px;">
+    &copy; 2024 Innovator Company Limited — Entertainment Portal
+  </footer>
+</body>
+</html>

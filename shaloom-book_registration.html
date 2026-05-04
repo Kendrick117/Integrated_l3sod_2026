@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Registration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; flex-direction: column; }
+        .navbar { background: white; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-size: 24px; font-weight: bold; color: #667eea; text-decoration: none; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #555; padding: 8px 16px; border-radius: 6px; transition: all 0.3s; }
+        .nav-links a:hover, .nav-links a.active { background: #667eea; color: white; }
+        .nav-links a.active { font-weight: bold; }
+        .container { flex: 1; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .page-header { text-align: center; color: white; margin-bottom: 30px; }
+        .page-header h1 { font-size: 36px; margin-bottom: 10px; }
+        .form-container { background: white; border-radius: 15px; padding: 40px; width: 100%; max-width: 600px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+        .form-title { text-align: center; color: #333; margin-bottom: 5px; font-size: 24px; }
+        .form-subtitle { text-align: center; color: #666; margin-bottom: 30px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; font-size: 14px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #667eea; }
+        .error { color: #e74c3c; font-size: 12px; margin-top: 5px; display: none; }
+        .btn-submit { width: 100%; padding: 14px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; transition: background 0.3s; margin-top: 10px; }
+        .btn-submit:hover { background: #5a67d8; }
+        .btn-secondary { display: block; text-align: center; margin-top: 15px; padding: 12px; background: #f7fafc; color: #667eea; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background 0.3s; }
+        .btn-secondary:hover { background: #edf2f7; }
+        .nav-breadcrumb { background: #f7fafc; border-radius: 8px; padding: 12px 20px; margin-bottom: 25px; }
+        .nav-breadcrumb a { color: #667eea; text-decoration: none; font-size: 14px; }
+        .nav-breadcrumb span { color: #999; margin: 0 8px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">📋 FormSystem</a>
+        <div class="nav-links">
+            <a href="shaloom-book_registration.html">Home</a>
+            <a href="shaloom-login.html">Login</a>
+            <a href="shaloom-student_registration.html">Students</a>
+            <a href="shaloom-book_registration.html" class="active">Books</a>
+            <a href="shaloom-courses_registration.html">Courses</a>
+            <a href="shaloom-entertainment_form.html">Events</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>📚 Book Registration</h1>
+            <p>Register books into the library system</p>
+        </div>
+
+        <div class="nav-breadcrumb">
+            <a href="shaloom-index.html">Home</a>
+            <span>›</span>
+            <a href="#">Book Registration</a>
+        </div>
+
+        <div class="form-container">
+            <h2 class="form-title">Register New Book</h2>
+            <p class="form-subtitle">Enter book details for catalog entry</p>
+
+            <form id="bookForm">
+                <div class="form-group">
+                    <label for="title">Book Title *</label>
+                    <input type="text" id="title" name="title" placeholder="The Great Gatsby" required>
+                    <div class="error" id="titleError">Please enter book title</div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="author">Author *</label>
+                        <input type="text" id="author" name="author" placeholder="F. Scott Fitzgerald" required>
+                        <div class="error" id="authorError">Please enter author name</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="isbn">ISBN *</label>
+                        <input type="text" id="isbn" name="isbn" placeholder="978-0743273565" required>
+                        <div class="error" id="isbnError">Please enter ISBN</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="genre">Genre *</label>
+                        <select id="genre" name="genre" required>
+                            <option value="">Select Genre</option>
+                            <option value="fiction">Fiction</option>
+                            <option value="non-fiction">Non-Fiction</option>
+                            <option value="science-fiction">Science Fiction</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="mystery">Mystery</option>
+                            <option value="biography">Biography</option>
+                            <option value="history">History</option>
+                            <option value="romance">Romance</option>
+                            <option value="thriller">Thriller</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="error" id="genreError">Please select a genre</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="publicationYear">Publication Year *</label>
+                        <input type="number" id="publicationYear" name="publicationYear" min="1000" max="2026" placeholder="2023" required>
+                        <div class="error" id="publicationYearError">Please enter publication year</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="price">Price ($) *</label>
+                        <input type="number" id="price" name="price" step="0.01" min="0" placeholder="15.99" required>
+                        <div class="error" id="priceError">Please enter price</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="publisher">Publisher</label>
+                        <input type="text" id="publisher" name="publisher" placeholder="Scribner">
+                        <div class="error" id="publisherError">Please enter publisher</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="3" placeholder="Brief description of the book"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Register Book</button>
+                <a href="index.html" class="btn-secondary">← Back to Home</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('bookForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.error').forEach(e => e.style.display = 'none');
+            
+            const title = document.getElementById('title').value.trim();
+            const author = document.getElementById('author').value.trim();
+            const isbn = document.getElementById('isbn').value.trim();
+            const genre = document.getElementById('genre').value;
+            const publicationYear = document.getElementById('publicationYear').value;
+            const price = document.getElementById('price').value;
+            const publisher = document.getElementById('publisher').value.trim();
+            const description = document.getElementById('description').value.trim();
+            
+            let valid = true;
+            if (title === '') { document.getElementById('titleError').style.display = 'block'; valid = false; }
+            if (author === '') { document.getElementById('authorError').style.display = 'block'; valid = false; }
+            if (isbn === '') { document.getElementById('isbnError').style.display = 'block'; valid = false; }
+            if (genre === '') { document.getElementById('genreError').style.display = 'block'; valid = false; }
+            if (publicationYear === '' || publicationYear < 1000 || publicationYear > 2026) {
+                document.getElementById('publicationYearError').style.display = 'block'; valid = false; }
+            if (price === '' || price < 0) { document.getElementById('priceError').style.display = 'block'; valid = false; }
+            
+            if (valid) {
+                const books = JSON.parse(localStorage.getItem('books') || '[]');
+                books.push({ id: Date.now(), title, author, isbn, genre, publicationYear: parseInt(publicationYear), price: parseFloat(price), publisher, description, registeredAt: new Date().toISOString() });
+                localStorage.setItem('books', JSON.stringify(books));
+                alert('Book registered successfully!');
+                this.reset();
+            }
+        });
+    </script>
+</body>
+</html>
