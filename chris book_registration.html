@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Registration - Innovate Company</title>
+    <link rel="stylesheet" href="css/book.css">
+</head>
+<body>
+    <div class="book-container">
+        <div class="book-sidebar">
+            <div class="library-icon">📚</div>
+            <h2>Library System</h2>
+            <nav>
+                <a href="chris dashboard.html">📊 Dashboard</a>
+                <a href="chris index.html">🏠 Home</a>
+            </nav>
+        </div>
+
+        <div class="book-main">
+            <div class="book-header">
+                <h1>📕 Book Registration</h1>
+                <p>Add new books to the library inventory</p>
+            </div>
+
+            <div id="successMessage" class="notification success" style="display:none;"></div>
+            <div id="errorMessage" class="notification error" style="display:none;"></div>
+
+            <div class="book-form-card">
+                <form id="bookForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>📖 Book Title *</label>
+                            <input type="text" id="title" placeholder="Enter book title" required>
+                        </div>
+                        <div class="form-group">
+                            <label>✍️ Author *</label>
+                            <input type="text" id="author" placeholder="Author name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>🔢 ISBN * (Unique)</label>
+                            <input type="text" id="isbn" placeholder="978-3-16-148410-0" required>
+                            <small class="error-msg" id="isbnError"></small>
+                        </div>
+                        <div class="form-group">
+                            <label>📅 Publication Year</label>
+                            <input type="number" id="publicationYear" min="1900" max="2026" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>🎭 Genre *</label>
+                            <select id="genre" required>
+                                <option value="">Select Genre</option>
+                                <option>Fiction</option>
+                                <option>Non-Fiction</option>
+                                <option>Science</option>
+                                <option>Technology</option>
+                                <option>History</option>
+                                <option>Biography</option>
+                                <option>Fantasy</option>
+                                <option>Mystery</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>📦 Quantity *</label>
+                            <input type="number" id="quantity" min="1" max="100" value="1" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>🏢 Publisher</label>
+                        <input type="text" id="publisher" placeholder="Publisher name (optional)">
+                    </div>
+
+                    <button type="submit" class="add-btn">➕ Add Book to Library</button>
+                </form>
+            </div>
+
+            <div class="inventory-card">
+                <h3>📚 Library Inventory</h3>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Search by title or author...">
+                </div>
+                <div class="table-container">
+                    <div id="bookList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let books = JSON.parse(localStorage.getItem('books') || '[]');
+
+        function displayBooks(filter = '') {
+            const container = document.getElementById('bookList');
+            let filteredBooks = books;
+            if (filter) {
+                filteredBooks = books.filter(b => 
+                    b.title.toLowerCase().includes(filter.toLowerCase()) || 
+                    b.author.toLowerCase().includes(filter.toLowerCase())
+                );
+            }
+            if (filteredBooks.length === 0) {
+                container.innerHTML = '<div class="empty">No books in library.</div>';
+                return;
+            }
+            let html = '<table class="book-table"><thead><tr><th>Title</th><th>Author</th><th>ISBN</th><th>Genre</th><th>Qty</th></tr></thead><tbody>';
+            filteredBooks.forEach(book => {
+                html += `<tr>
+                    <td><strong>${book.title}</strong></td>
+                    <td>${book.author}</td>
+                    <td>${book.isbn}</td>
+                    <td>${book.genre}</td>
+                    <td><span class="qty-badge">${book.quantity}</span></td>
+                </tr>`;
+            });
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        displayBooks();
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            displayBooks(e.target.value);
+        });
+
+        document.getElementById('bookForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const isbn = document.getElementById('isbn').value;
+            if (books.some(book => book.isbn === isbn)) {
+                document.getElementById('isbnError').textContent = 'ISBN already exists!';
+                document.getElementById('errorMessage').textContent = 'Duplicate ISBN not allowed!';
+                document.getElementById('errorMessage').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('errorMessage').style.display = 'none';
+                    document.getElementById('isbnError').textContent = '';
+                }, 3000);
+                return;
+            }
+            const book = {
+                id: Date.now(),
+                title: document.getElementById('title').value,
+                author: document.getElementById('author').value,
+                isbn: isbn,
+                publicationYear: document.getElementById('publicationYear').value,
+                genre: document.getElementById('genre').value,
+                quantity: parseInt(document.getElementById('quantity').value),
+                publisher: document.getElementById('publisher').value || 'Not specified',
+                registrationDate: new Date().toLocaleString()
+            };
+            books.push(book);
+            localStorage.setItem('books', JSON.stringify(books));
+            document.getElementById('successMessage').textContent = '📕 Book added successfully!';
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('bookForm').reset();
+            displayBooks();
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

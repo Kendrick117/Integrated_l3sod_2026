@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Innovate Company</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">🏢</div>
+                <h2>Innovate</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="chris dashboard.html" class="active">📊 Dashboard</a></li>
+                <li><a href="chris student_registration.html">👨‍🎓 Students</a></li>
+                <li><a href="chris entertainment.html">🎉 Entertainment</a></li>
+                <li><a href="chris courses_registration.html">📚 Courses</a></li>
+                <li><a href="chris book_registration.html">📕 Books</a></li>
+                <li><a href="#" onclick="logout()">🚪 Logout</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <p>Huye District</p>
+                <p class="version">v2.0.0</p>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="welcome">
+                    <h1>Dashboard</h1>
+                    <p>Welcome back, <span id="username"></span>!</p>
+                </div>
+                <div class="date-time" id="datetime"></div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card blue">
+                    <div class="stat-icon">👨‍🎓</div>
+                    <div class="stat-info">
+                        <h3 id="studentCount">0</h3>
+                        <p>Students Registered</p>
+                    </div>
+                </div>
+                <div class="stat-card purple">
+                    <div class="stat-icon">🎉</div>
+                    <div class="stat-info">
+                        <h3 id="entertainmentCount">0</h3>
+                        <p>Entertainment Bookings</p>
+                    </div>
+                </div>
+                <div class="stat-card green">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-info">
+                        <h3 id="courseCount">0</h3>
+                        <p>Course Registrations</p>
+                    </div>
+                </div>
+                <div class="stat-card orange">
+                    <div class="stat-icon">📕</div>
+                    <div class="stat-info">
+                        <h3 id="bookCount">0</h3>
+                        <p>Books in Library</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-section">
+                <div class="recent-card">
+                    <h3>📌 Recent Students</h3>
+                    <div id="recentStudents"></div>
+                </div>
+                <div class="recent-card">
+                    <h3>📌 Recent Bookings</h3>
+                    <div id="recentBookings"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        if (localStorage.getItem('loggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+
+        document.getElementById('username').textContent = localStorage.getItem('username') || 'User';
+
+        function updateDateTime() {
+            const now = new Date();
+            document.getElementById('datetime').textContent = now.toLocaleString();
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        function loadStats() {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            const entertainments = JSON.parse(localStorage.getItem('entertainments') || '[]');
+            const courseRegs = JSON.parse(localStorage.getItem('courseRegistrations') || '[]');
+            const books = JSON.parse(localStorage.getItem('books') || '[]');
+
+            document.getElementById('studentCount').textContent = students.length;
+            document.getElementById('entertainmentCount').textContent = entertainments.length;
+            document.getElementById('courseCount').textContent = courseRegs.length;
+            document.getElementById('bookCount').textContent = books.length;
+
+            // Recent students (last 3)
+            const recentStudentsDiv = document.getElementById('recentStudents');
+            if (students.length === 0) {
+                recentStudentsDiv.innerHTML = '<p class="empty">No students yet</p>';
+            } else {
+                let html = '<ul>';
+                students.slice(-3).reverse().forEach(s => {
+                    html += `<li>${s.fullName} - ${s.email}</li>`;
+                });
+                html += '</ul>';
+                recentStudentsDiv.innerHTML = html;
+            }
+
+            // Recent bookings (last 3)
+            const recentBookingsDiv = document.getElementById('recentBookings');
+            if (entertainments.length === 0) {
+                recentBookingsDiv.innerHTML = '<p class="empty">No bookings yet</p>';
+            } else {
+                let html = '<ul>';
+                entertainments.slice(-3).reverse().forEach(e => {
+                    html += `<li>${e.type} - ${e.activityName}</li>`;
+                });
+                html += '</ul>';
+                recentBookingsDiv.innerHTML = html;
+            }
+        }
+
+        loadStats();
+
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('username');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

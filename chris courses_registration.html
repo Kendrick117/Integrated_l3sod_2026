@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration - Innovate Company</title>
+    <link rel="stylesheet" href="css/courses.css">
+</head>
+<body>
+    <div class="courses-wrapper">
+        <div class="courses-header">
+            <a href="chris dashboard.html" class="home-link">← Dashboard</a>
+            <h1>📖 Course Registration</h1>
+            <p>Select and enroll in your desired courses</p>
+        </div>
+
+        <div class="courses-grid">
+            <div class="registration-card">
+                <div class="card-title">
+                    <span>🎓</span>
+                    <h2>Course Enrollment</h2>
+                </div>
+
+                <div id="successMessage" class="alert success" style="display:none;"></div>
+                <div id="errorMessage" class="alert error" style="display:none;"></div>
+
+                <form id="courseForm">
+                    <div class="form-group">
+                        <label>Student Email</label>
+                        <input type="email" id="studentEmail" placeholder="Enter your registered email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Courses</label>
+                        <div id="courseList" class="course-checkbox-group"></div>
+                        <small class="error-text" id="courseError"></small>
+                    </div>
+
+                    <button type="submit" class="enroll-btn">Enroll Now</button>
+                </form>
+            </div>
+
+            <div class="registrations-card">
+                <h3>📋 My Registrations</h3>
+                <div id="registrationsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const courses = [
+            { id: 1, code: 'CS101', name: 'Introduction to Programming', credits: 3, instructor: 'Dr. Kagame' },
+            { id: 2, code: 'CS201', name: 'Web Development', credits: 4, instructor: 'Prof. Uwimana' },
+            { id: 3, code: 'CS301', name: 'Database Design', credits: 3, instructor: 'Dr. Mukamana' },
+            { id: 4, code: 'IT101', name: 'Network Fundamentals', credits: 3, instructor: 'Eng. Niyonshuti' },
+            { id: 5, code: 'MATH101', name: 'Discrete Mathematics', credits: 3, instructor: 'Prof. Habimana' }
+        ];
+
+        let registrations = JSON.parse(localStorage.getItem('courseRegistrations') || '[]');
+
+        function displayCourses() {
+            const container = document.getElementById('courseList');
+            let html = '';
+            courses.forEach(course => {
+                html += `
+                    <label class="course-option">
+                        <input type="checkbox" value="${course.id}" class="course-checkbox">
+                        <div class="course-info">
+                            <strong>${course.code}</strong> - ${course.name}
+                            <span class="badge">${course.credits} credits</span>
+                            <small>👨‍🏫 ${course.instructor}</small>
+                        </div>
+                    </label>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function displayRegistrations() {
+            const container = document.getElementById('registrationsList');
+            if (registrations.length === 0) {
+                container.innerHTML = '<div class="empty">No course registrations yet.</div>';
+                return;
+            }
+            let html = '<div class="reg-list">';
+            registrations.slice().reverse().forEach(reg => {
+                html += `
+                    <div class="reg-item">
+                        <div class="reg-code">${reg.courseCode}</div>
+                        <div class="reg-name">${reg.courseName}</div>
+                        <div class="reg-credits">${reg.credits} credits</div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        displayCourses();
+        displayRegistrations();
+
+        document.getElementById('courseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const studentEmail = document.getElementById('studentEmail').value;
+            const selected = Array.from(document.querySelectorAll('.course-checkbox:checked')).map(cb => parseInt(cb.value));
+
+            if (selected.length === 0) {
+                document.getElementById('courseError').textContent = 'Please select at least one course!';
+                return;
+            } else {
+                document.getElementById('courseError').textContent = '';
+            }
+
+            for (const courseId of selected) {
+                if (registrations.some(r => r.studentEmail === studentEmail && r.courseId === courseId)) {
+                    document.getElementById('errorMessage').textContent = 'You are already registered for one of these courses!';
+                    document.getElementById('errorMessage').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('errorMessage').style.display = 'none';
+                    }, 3000);
+                    return;
+                }
+            }
+
+            selected.forEach(courseId => {
+                const course = courses.find(c => c.id === courseId);
+                registrations.push({
+                    id: Date.now() + Math.random(),
+                    studentEmail: studentEmail,
+                    courseId: courseId,
+                    courseCode: course.code,
+                    courseName: course.name,
+                    credits: course.credits,
+                    registrationDate: new Date().toLocaleString()
+                });
+            });
+
+            localStorage.setItem('courseRegistrations', JSON.stringify(registrations));
+            document.getElementById('successMessage').textContent = `✅ Enrolled in ${selected.length} course(s)!`;
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('studentEmail').value = '';
+            document.querySelectorAll('.course-checkbox:checked').forEach(cb => cb.checked = false);
+            displayRegistrations();
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

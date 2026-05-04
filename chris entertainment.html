@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entertainment - Innovate Company</title>
+    <link rel="stylesheet" href="css/entertainment.css">
+</head>
+<body>
+    <div class="entertainment-bg">
+        <div class="entertainment-container">
+            <div class="header-section">
+                <a href="chris dashboard.html" class="back-btn">← Dashboard</a>
+                <h1>🎬 Entertainment Booking</h1>
+                <p>Book your perfect entertainment experience</p>
+            </div>
+
+            <div id="successMessage" class="toast success" style="display:none;"></div>
+
+            <div class="booking-card">
+                <form id="entertainmentForm">
+                    <div class="form-group">
+                        <label>🎭 Entertainment Type</label>
+                        <select id="entertainmentType" required>
+                            <option value="">Select Type</option>
+                            <option>🎵 Concert</option>
+                            <option>🎬 Movie</option>
+                            <option>⚽ Sports Event</option>
+                            <option>🎉 Party</option>
+                            <option>🎭 Theatre</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📝 Activity Name</label>
+                        <input type="text" id="activityName" placeholder="e.g., Afrobeat Concert 2026" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>📅 Event Date & Time</label>
+                            <input type="datetime-local" id="eventDateTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label>👥 Number of Participants</label>
+                            <input type="number" id="participants" min="1" max="100" value="1" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>💬 Special Requests</label>
+                        <textarea id="specialRequests" rows="3" placeholder="Any special accommodations or requests..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📧 Contact Email</label>
+                        <input type="email" id="contactEmail" placeholder="your@email.com" required>
+                    </div>
+
+                    <button type="submit" class="book-btn">🎟️ Book Now</button>
+                </form>
+            </div>
+
+            <div class="events-card">
+                <h3>📅 Upcoming Events</h3>
+                <div id="entertainmentList"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let entertainments = JSON.parse(localStorage.getItem('entertainments') || '[]');
+
+        function displayEntertainments() {
+            const container = document.getElementById('entertainmentList');
+            if (entertainments.length === 0) {
+                container.innerHTML = '<div class="empty-state">No bookings yet. Be the first!</div>';
+                return;
+            }
+            let html = '<div class="event-grid">';
+            entertainments.slice().reverse().forEach(e => {
+                html += `
+                    <div class="event-card">
+                        <div class="event-type">${e.type}</div>
+                        <h4>${e.activityName}</h4>
+                        <p>📅 ${new Date(e.dateTime).toLocaleString()}</p>
+                        <p>👥 ${e.participants} participants</p>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+        displayEntertainments();
+
+        document.getElementById('entertainmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const booking = {
+                id: Date.now(),
+                type: document.getElementById('entertainmentType').value,
+                activityName: document.getElementById('activityName').value,
+                dateTime: document.getElementById('eventDateTime').value,
+                participants: document.getElementById('participants').value,
+                specialRequests: document.getElementById('specialRequests').value || 'None',
+                contactEmail: document.getElementById('contactEmail').value,
+                bookingDate: new Date().toLocaleString()
+            };
+            entertainments.push(booking);
+            localStorage.setItem('entertainments', JSON.stringify(entertainments));
+            document.getElementById('successMessage').textContent = '🎉 Booking submitted successfully!';
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('entertainmentForm').reset();
+            displayEntertainments();
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

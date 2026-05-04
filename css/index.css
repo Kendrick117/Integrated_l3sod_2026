@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeInDown 0.8s ease;
+}
+
+.company-badge {
+    margin-bottom: 15px;
+}
+
+.badge {
+    background: rgba(255,255,255,0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #ffd700;
+    letter-spacing: 1px;
+}
+
+.company-name {
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+}
+
+.company-location {
+    color: #ccc;
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.tagline {
+    color: #ffd700;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* Main Card */
+.main-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.8s ease;
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card-header h2 {
+    color: #2c5364;
+    font-size: 1.8rem;
+}
+
+.card-header p {
+    color: #666;
+    margin: 10px 0;
+}
+
+.divider {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #203a43, #2c5364);
+    margin: 15px auto 0;
+    border-radius: 3px;
+}
+
+/* Navigation Grid */
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.nav-card {
+    background: #f8f9fa;
+    padding: 25px 15px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.nav-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.nav-card:hover h3,
+.nav-card:hover p {
+    color: white;
+}
+
+.nav-card:hover .nav-icon {
+    transform: scale(1.1);
+}
+
+.nav-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.nav-card h3 {
+    color: #2c5364;
+    margin-bottom: 8px;
+}
+
+.nav-card p {
+    color: #777;
+    font-size: 0.85rem;
+}
+
+/* Footer */
+.footer-info {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.dev-signature {
+    margin-top: 5px;
+    color: #667eea;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .company-name {
+        font-size: 1.8rem;
+    }
+    
+    .main-card {
+        padding: 25px;
+    }
+    
+    .nav-grid {
+        grid-template-columns: 1fr;
+    }
+}
