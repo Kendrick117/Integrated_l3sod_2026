@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - IFU Company</title>
+
+<style>
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* ===== BODY ===== */
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #0B1829, #1E3350);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== LOGIN CONTAINER ===== */
+.login-container {
+    background: #fff;
+    padding: 40px;
+    width: 350px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* ===== HEADER ===== */
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #0B1829;
+}
+
+/* ===== INPUT GROUP ===== */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #C9A84C;
+    box-shadow: 0 0 5px rgba(201,168,76,0.5);
+}
+
+/* ===== OPTIONS ===== */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.options a {
+    text-decoration: none;
+    color: #C9A84C;
+}
+
+/* ===== BUTTON ===== */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: #C9A84C;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #8B6914;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.footer a {
+    color: #C9A84C;
+    text-decoration: none;
+}
+</style>
+
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+
+    <form>
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" placeholder="Enter your password" required>
+        </div>
+
+        <div class="options">
+            <label>
+                <input type="checkbox"> Remember me
+            </label>
+            <a href="#">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="login-btn">Sign In</button>
+
+        <div class="footer">
+            Don’t have an account? <a href="#">Register</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

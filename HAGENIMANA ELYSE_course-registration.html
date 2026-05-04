@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Course Registration</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: linear-gradient(135deg,#142236,#0B1829);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.form-box {
+    background:white;
+    padding:30px;
+    width:420px;
+    border-radius:12px;
+}
+
+h2 { text-align:center; color:#142236; }
+
+input, select {
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+button {
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    background:#1E3350;
+    border:none;
+    color:#fff;
+    font-weight:bold;
+    border-radius:8px;
+}
+button:hover { background:#C9A84C; }
+</style>
+</head>
+
+<body>
+<div class="form-box">
+    <h2>Course Registration</h2>
+
+    <form>
+        <input type="text" placeholder="Student Name">
+        <input type="text" placeholder="Student ID">
+
+        <select>
+            <option>Select Course</option>
+            <option>Web Development</option>
+            <option>Networking</option>
+            <option>Cyber Security</option>
+            <option>AI Basics</option>
+        </select>
+
+        <input type="date">
+
+        <button type="submit">Register Course</button>
+    </form>
+</div>
+</body>
+</html>

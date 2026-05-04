@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Entertainment Form</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.form-box {
+    background:#222;
+    color:#fff;
+    padding:30px;
+    width:400px;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(255,255,255,0.1);
+}
+
+h2 { text-align:center; color:#C9A84C; }
+
+input, select {
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+}
+
+button {
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    background:#C9A84C;
+    border:none;
+    color:#000;
+    font-weight:bold;
+    border-radius:8px;
+}
+button:hover { background:#fff; }
+</style>
+</head>
+
+<body>
+<div class="form-box">
+    <h2>Entertainment Registration</h2>
+
+    <form>
+        <input type="text" placeholder="Full Name">
+        <select>
+            <option>Music</option>
+            <option>Movies</option>
+            <option>Sports</option>
+            <option>Gaming</option>
+        </select>
+
+        <input type="text" placeholder="Favorite Artist/Game">
+        <input type="email" placeholder="Email">
+
+        <button type="submit">Join</button>
+    </form>
+</div>
+</body>
+</html>
