@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entertainment Preferences — SEZERLAND AI ALPHA</title>
+<style>
+  :root {
+    --primary: #2563EB;
+    --primary-ghost: #EFF6FF;
+    --purple: #7C3AED;
+    --purple-dark: #6D28D9;
+    --purple-ghost: #FAF5FF;
+    --bg: #F8FAFC;
+    --border: #E5E7EB;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
+    --radius-md: 12px;
+    --radius-xl: 20px;
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+    --shadow-glow: 0 0 0 3px rgba(124,58,237,0.15);
+    --transition: 0.2s ease;
+    --font: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text-primary); line-height: 1.6; min-height: 100vh; overflow-x: hidden; }
+
+  .page {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 32px 16px; position: relative;
+    background:
+      radial-gradient(ellipse 70% 50% at 30% 30%, rgba(124,58,237,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 70% 70%, rgba(236,72,153,0.04) 0%, transparent 60%),
+      linear-gradient(175deg, #F8FAFC 0%, #FAF5FF 40%, #F8FAFC 100%);
+  }
+  .page::before {
+    content: ''; position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(124,58,237,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124,58,237,0.02) 1px, transparent 1px);
+    background-size: 48px 48px; pointer-events: none;
+  }
+  .page::after {
+    content: ''; position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%);
+    filter: blur(50px); pointer-events: none;
+  }
+  .blob-br {
+    position: fixed; bottom: -80px; right: -80px; width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(236,72,153,0.05) 0%, transparent 70%);
+    filter: blur(40px); pointer-events: none;
+  }
+
+  .container { width: 100%; max-width: 460px; position: relative; z-index: 1; }
+
+  .header { text-align: center; margin-bottom: 28px; }
+  .logo { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+    border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 12px rgba(124,58,237,0.3);
+    position: relative; overflow: hidden;
+  }
+  .logo-icon::before {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+  }
+  .logo-icon svg { width: 22px; height: 22px; fill: #FFF; position: relative; z-index: 1; }
+  .logo-text { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; }
+  .logo-text span { color: var(--purple); }
+  .header-sub { font-size: 0.8125rem; color: var(--text-muted); }
+
+  .card {
+    background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(229,231,235,0.7); border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg); padding: 36px 32px; position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  }
+
+  .form-head { text-align: center; margin-bottom: 28px; }
+  .badge {
+    display: inline-flex; padding: 3px 10px;
+    font-size: 0.6875rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.06em; border-radius: 100px; margin-bottom: 12px;
+    background: var(--purple-ghost); color: var(--purple);
+    border: 1px solid rgba(124,58,237,0.15);
+  }
+  .form-head h2 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 4px; }
+  .form-head p { font-size: 0.875rem; color: var(--text-muted); }
+
+  .form-group { margin-bottom: 22px; }
+  .form-group > label { display: block; font-size: 0.8125rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; }
+
+  .input-wrap { position: relative; display: flex; align-items: center; }
+  .input-wrap svg.ico {
+    position: absolute; left: 14px; width: 18px; height: 18px;
+    fill: none; stroke: var(--text-muted); stroke-width: 1.8;
+    stroke-linecap: round; stroke-linejoin: round;
+    pointer-events: none; transition: stroke var(--transition); z-index: 1;
+  }
+  .input-wrap:focus-within svg.ico { stroke: var(--purple); }
+
+  .fi {
+    width: 100%; height: 48px; padding: 0 14px 0 44px;
+    font-family: var(--font); font-size: 0.9rem; color: var(--text-primary);
+    background: var(--bg); border: 1.5px solid var(--border);
+    border-radius: var(--radius-md); outline: none;
+    transition: all var(--transition); appearance: none;
+  }
+  .fi::placeholder { color: var(--text-muted); }
+  .fi:hover { border-color: #CBD5E1; }
+  .fi:focus { border-color: var(--purple); box-shadow: var(--shadow-glow); background: #FFF; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { position: relative; }
+  .chip input { position: absolute; opacity: 0; pointer-events: none; }
+  .chip label {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 16px; font-size: 0.8125rem; font-weight: 500;
+    color: var(--text-secondary); background: var(--bg);
+    border: 1.5px solid var(--border); border-radius: 100px;
+    cursor: pointer; transition: all var(--transition); user-select: none;
+  }
+  .chip label svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .chip label:hover { border-color: var(--purple); color: var(--purple); background: var(--purple-ghost); }
+  .chip input:checked + label {
+    background: var(--purple); color: #FFF; border-color: var(--purple);
+    box-shadow: 0 2px 8px rgba(124,58,237,0.25);
+  }
+  .chip input:checked + label svg { stroke: #FFF; }
+  .chip input:focus-visible + label { outline: 2px solid var(--purple); outline-offset: 2px; }
+
+  .ft {
+    width: 100%; min-height: 110px; padding: 14px;
+    font-family: var(--font); font-size: 0.9rem; color: var(--text-primary);
+    background: var(--bg); border: 1.5px solid var(--border);
+    border-radius: var(--radius-md); outline: none;
+    transition: all var(--transition); resize: vertical; line-height: 1.6;
+  }
+  .ft::placeholder { color: var(--text-muted); }
+  .ft:hover { border-color: #CBD5E1; }
+  .ft:focus { border-color: var(--purple); box-shadow: var(--shadow-glow); background: #FFF; }
+  .helper { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; height: 50px; padding: 0 24px;
+    font-family: var(--font); font-size: 0.9375rem; font-weight: 600;
+    border: none; border-radius: var(--radius-md); cursor: pointer;
+    transition: all var(--transition); letter-spacing: -0.01em;
+    position: relative; overflow: hidden; color: #FFF;
+    background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+    box-shadow: 0 4px 12px rgba(124,58,237,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn:hover { box-shadow: 0 6px 20px rgba(124,58,237,0.4), inset 0 1px 0 rgba(255,255,255,0.15); transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+  .btn::after {
+    content: ''; position: absolute; top: -50%; left: -60%; width: 40%; height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: skewX(-20deg); transition: left 0.5s ease;
+  }
+  .btn:hover::after { left: 120%; }
+
+  .foot { text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
+  .foot p { font-size: 0.8125rem; color: var(--text-muted); }
+  .foot a { color: var(--purple); text-decoration: none; font-weight: 600; }
+  .foot a:hover { text-decoration: underline; }
+
+  .page-foot { text-align: center; margin-top: 28px; position: relative; z-index: 1; }
+  .page-foot p { font-size: 0.75rem; color: var(--text-muted); }
+
+  @media (max-width: 480px) {
+    .card { padding: 28px 20px; }
+    .form-head h2 { font-size: 1.2rem; }
+    .chips { gap: 6px; }
+    .chip label { padding: 7px 12px; font-size: 0.75rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="blob-br"></div>
+  <div class="container">
+
+    <div class="header">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        </div>
+        <div class="logo-text">SEZERLAND <span>AI ALPHA</span></div>
+      </div>
+      <p class="header-sub">Integrated Situation — Unified Access Portal</p>
+    </div>
+
+    <div class="card">
+      <div class="form-head">
+        <span class="badge">Entertainment</span>
+        <h2>Set Your Preferences</h2>
+        <p>Tell us what you love — we'll personalize your experience</p>
+      </div>
+
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="uname">Username</label>
+          <div class="input-wrap">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <input type="text" id="uname" name="username" class="fi" placeholder="Choose a display name" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Category Interests</label>
+          <div class="chips">
+            <div class="chip">
+              <input type="checkbox" id="c-music" name="cat" value="music">
+              <label for="c-music">
+                <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                Music
+              </label>
+            </div>
+            <div class="chip">
+              <input type="checkbox" id="c-movies" name="cat" value="movies">
+              <label for="c-movies">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                Movies
+              </label>
+            </div>
+            <div class="chip">
+              <input type="checkbox" id="c-sports" name="cat" value="sports">
+              <label for="c-sports">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                Sports
+              </label>
+            </div>
+            <div class="chip">
+              <input type="checkbox" id="c-games" name="cat" value="games">
+              <label for="c-games">
+                <svg viewBox="0 0 24 24"><line x1="6" y1="11" x2="10" y2="11"/><line x1="8" y1="9" x2="8" y2="13"/><line x1="15" y1="12" x2="15.01" y2="12"/><line x1="18" y1="10" x2="18.01" y2="10"/><rect x="2" y="6" width="20" height="12" rx="2"/></svg>
+                Games
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="desc">Preference Description</label>
+          <textarea id="desc" name="description" class="ft" placeholder="Describe your entertainment preferences in detail — favorite genres, artists, teams, game types, etc." rows="4"></textarea>
+          <p class="helper">The more details you share, the better we can personalize recommendations</p>
+        </div>
+
+        <button type="submit" class="btn">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          Save Preferences
+        </button>
+      </form>
+
+      <div class="foot">
+        <p>Want to update later? <a href="#">Skip for now</a></p>
+      </div>
+    </div>
+
+    <div class="page-foot">
+      <p>&copy; 2025 SEZERLAND AI ALPHA &middot; Privacy &middot; Terms &middot; Support</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
