@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Innovator System</title>
+
+<script>
+// SHOW DASHBOARD AFTER LOGIN
+function loginUser(){
+  document.getElementById("loginPage").style.display="none";
+  document.getElementById("dashboardPage").style.display="flex";
+}
+</script>
+
+</head>
+
+<body style="margin:0;font-family:Arial;">
+
+<!-- ================= LOGIN PAGE ================= -->
+<div id="loginPage" style="height:100vh;background:#0a0f1e;color:white;display:flex;justify-content:center;align-items:center;">
+
+<div style="background:#111827;padding:40px;border-radius:15px;width:320px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+
+<h2>🔑 Login</h2>
+
+<input type="email" placeholder="Email" style="width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none;"><br>
+<input type="password" placeholder="Password" style="width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none;"><br>
+
+<button onclick="loginUser()" style="width:100%;padding:12px;background:#3b82f6;color:white;border:none;border-radius:8px;font-weight:bold;">
+Login
+</button>
+
+<p style="margin-top:15px;">
+<a href="#" style="color:#3b82f6;">Create Account</a>
+</p>
+
+</div>
+</div>
+
+<!-- ================= DASHBOARD ================= -->
+<div id="dashboardPage" style="display:none;min-height:100vh;">
+
+<!-- Sidebar -->
+<div style="width:230px;background:#111827;color:white;padding:20px;float:left;height:100vh;">
+
+<h2>🏢 Innovator</h2>
+
+<ul style="list-style:none;padding:0;margin-top:30px;line-height:2;">
+<li><a href="#" style="color:white;text-decoration:none;">🏠 Dashboard</a></li>
+<li><a href="student.html" style="color:white;text-decoration:none;">🎓 Student</a></li>
+<li><a href="entertainment.html" style="color:white;text-decoration:none;">🎬 Entertainment</a></li>
+<li><a href="courses.html" style="color:white;text-decoration:none;">📚 Courses</a></li>
+<li><a href="books.html" style="color:white;text-decoration:none;">📖 Books</a></li>
+</ul>
+
+<br>
+<button onclick="location.reload()" style="background:red;color:white;border:none;padding:8px;border-radius:6px;">
+Logout
+</button>
+
+</div>
+
+<!-- Main Content -->
+<div style="margin-left:230px;background:#f3f4f6;padding:30px;min-height:100vh;">
+
+<h1>Welcome to Dashboard</h1>
+
+<!-- Cards -->
+<div style="display:flex;gap:20px;flex-wrap:wrap;">
+
+<div style="background:white;padding:20px;border-radius:10px;width:220px;">
+<h3>🎓 Student</h3>
+<p>Manage student system</p>
+<a href="student-registration.html">Open →</a>
+</div>
+
+<div style="background:white;padding:20px;border-radius:10px;width:220px;">
+<h3>🎬 Entertainment</h3>
+<p>Movies & music</p>
+<a href="entertainment.html">Open →</a>
+</div>
+
+<div style="background:white;padding:20px;border-radius:10px;width:220px;">
+<h3>📚 Courses</h3>
+<p>Register courses</p>
+<a href="courses-registration.html">Open →</a>
+</div>
+
+<div style="background:white;padding:20px;border-radius:10px;width:220px;">
+<h3>📖 Books</h3>
+<p>Library system</p>
+<a href="book-registration.html">Open →</a>
+</div>
+
+</div>
+
+<!-- Extra Info -->
+<h2 style="margin-top:40px;">System Overview</h2>
+
+<p>✔ Total Users: 1200</p>
+<p>✔ Active Courses: 48</p>
+<p>✔ Books Available: 320</p>
+
+</div>
+
+</div>
+
+</body>
+</html>
