@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FormSystem</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; flex-direction: column; }
+        .navbar { background: white; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-size: 24px; font-weight: bold; color: #667eea; text-decoration: none; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #555; padding: 8px 16px; border-radius: 6px; transition: all 0.3s; }
+        .nav-links a:hover { background: #667eea; color: white; }
+        .container { flex: 1; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .login-card { background: white; border-radius: 15px; padding: 45px; width: 100%; max-width: 450px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+        .login-card h2 { text-align: center; color: #333; margin-bottom: 10px; font-size: 24px; }
+        .login-card p { text-align: center; color: #666; margin-bottom: 30px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; font-size: 14px; }
+        .form-group input { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; transition: border-color 0.3s; }
+        .form-group input:focus { outline: none; border-color: #667eea; }
+        .error { color: #e74c3c; font-size: 12px; margin-top: 5px; display: none; }
+        .btn-login { width: 100%; padding: 14px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; transition: background 0.3s; margin-top: 10px; }
+        .btn-login:hover { background: #5a67d8; }
+        .btn-register { width: 100%; padding: 14px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; transition: all 0.3s; margin-top: 15px; }
+        .btn-register:hover { background: #5a67d8; }
+        .dropdown-content { background: #f7fafc; border-radius: 8px; padding: 20px; margin-top: 15px; display: none; }
+        .dropdown-content.open { display: block; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .dropdown-title { font-size: 13px; color: #666; margin-bottom: 12px; font-weight: 600; text-transform: uppercase; }
+        .reg-link { display: block; padding: 10px 15px; color: #555; text-decoration: none; border-radius: 6px; margin-bottom: 5px; transition: all 0.3s; }
+        .reg-link:hover { background: #667eea; color: white; }
+        .section-divider { display: flex; align-items: center; margin: 25px 0; }
+        .section-divider .line { flex: 1; height: 1px; background: #e0e0e0; }
+        .section-divider span { padding: 0 15px; color: #999; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">📋 FormSystem</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="student_registration.html">Students</a>
+            <a href="book_registration.html">Books</a>
+            <a href="courses_registration.html">Courses</a>
+            <a href="entertainment_form.html">Events</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="login-card">
+            <h2>Sign In</h2>
+            <p>Access your account and manage registrations</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    <div class="error" id="usernameError">Please enter your username</div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <div class="error" id="passwordError">Please enter your password</div>
+                </div>
+                <button type="submit" class="btn-login">Sign In</button>
+            </form>
+
+            <div class="section-divider">
+                <div class="line"></div>
+                <span>or explore</span>
+                <div class="line"></div>
+            </div>
+
+            <button type="button" class="btn-register" onclick="toggleDropdown()">Registration</button>
+            <div class="dropdown-content" id="dropdownContent">
+                <div class="dropdown-title">Available Services</div>
+                <a href="student_registration.html" class="reg-link">🎓 Student Registration</a>
+                <a href="book_registration.html" class="reg-link">📚 Book Registration</a>
+                <a href="courses_registration.html" class="reg-link">📘 Courses Registration</a>
+                <a href="entertainment_form.html" class="reg-link">🎭 Entertainment</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.error').forEach(e => e.style.display = 'none');
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            
+            let valid = true;
+            if (username === '') { document.getElementById('usernameError').style.display = 'block'; valid = false; }
+            if (password === '') { document.getElementById('passwordError').style.display = 'block'; valid = false; }
+            
+            if (valid) {
+                // Save user session
+                const user = { username: username, loggedInAt: new Date().toISOString() };
+                localStorage.setItem('formSystemUser', JSON.stringify(user));
+                alert('Welcome, ' + username + '! Login successful.');
+                this.reset();
+                window.location.href = 'index.html';
+            }
+        });
+
+        // Toggle dropdown
+        function toggleDropdown() {
+            document.getElementById('dropdownContent').classList.toggle('open');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('dropdownContent');
+            const btn = document.querySelector('.btn-register');
+            if (!dropdown.contains(e.target) && !btn.contains(e.target)) {
+                dropdown.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
