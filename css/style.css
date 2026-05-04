@@ -1,0 +1,147 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: url('../images/background.png') no-repeat center center fixed;
+  background-size: cover;
+  color: black;
+}
+
+header {
+  background: rgba(0,0,0,0.8);
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+.logo {
+  width: 80px;
+}
+
+nav a {
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+}
+
+.container {
+  background: rgba(255,255,255,0.9);
+  width: 350px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+button {
+  width: 95%;
+  padding: 10px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: green;
+}
+
+/* FOOTER IMPROVED */
+footer {
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.navbar {
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+}
+
+.navbar h1 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.navbar .logo {
+  width: 60px;
+}
+
+.navbar nav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+.navbar nav ul li a:hover {
+  background: green;
+}
+.hero {
+  text-align: center;
+  padding: 50px;
+  color: white;
+}
+
+.about, .services {
+  background: rgba(255,255,255,0.85);
+  margin: 20px auto;
+  padding: 20px;
+  width: 80%;
+  border-radius: 10px;
+}
+
+.service-box p {
+  margin: 8px 0;
+}
+
+/* 🔥 BLACK FOOTER SECTION */
+.footer {
+  background: black;
+  color: white;
+  padding: 30px 20px;
+  margin-top: 40px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.footer h3 {
+  color: lightgreen;
+}
+
+.footer .copyright {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}
