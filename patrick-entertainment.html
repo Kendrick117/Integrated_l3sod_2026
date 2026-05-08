@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Entertainment Registration</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: linear-gradient(120deg, #ff512f, #dd2476);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-box {
+      background: white;
+      padding: 20px;
+      width: 350px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #dd2476;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #msg {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-box">
+  <h2>Entertainment Form 🎭</h2>
+
+  <input type="text" id="name" placeholder="Full Name">
+  <input type="email" id="email" placeholder="Email">
+
+  <input type="password" id="password" placeholder="Password">
+
+  <select id="event">
+    <option value="">Select Event</option>
+    <option>Music Concert</option>
+    <option>Dance Show</option>
+    <option>Talent Show</option>
+    <option>Comedy Night</option>
+  </select>
+
+  <input type="text" id="phone" placeholder="Phone Number">
+
+  <textarea id="message" placeholder="Why do you want to join?"></textarea>
+
+  <button onclick="submitForm()">Submit</button>
+
+  <p id="msg"></p>
+</div>
+
+<script>
+function submitForm() {
+
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+  let event = document.getElementById("event").value;
+  let phone = document.getElementById("phone").value;
+
+  // ❌ validation
+  if (name === "" || email === "" || password === "" || event === "" || phone === "") {
+    document.getElementById("msg").style.color = "red";
+    document.getElementById("msg").innerText = "Please fill all required fields!";
+    return;
+  }
+
+  // ✅ success message
+  document.getElementById("msg").style.color = "green";
+  document.getElementById("msg").innerText = "Registration successful 🎉 Redirecting...";
+
+  // 🚀 redirect to course.html
+  setTimeout(() => {
+    window.location.href = "patrick-course.html";
+  }, 1500);
+}
+</script>
+
+</body>
+</html>

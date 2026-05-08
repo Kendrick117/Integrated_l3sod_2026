@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Registration Form</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: linear-gradient(120deg, #11998e, #38ef7d);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-box {
+      background: white;
+      padding: 20px;
+      width: 360px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #11998e;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #msg {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-box">
+  <h2>Book Registration 📚</h2>
+
+  <input type="text" id="student" placeholder="Student Name">
+  <input type="text" id="book" placeholder="Book Title">
+  <input type="text" id="author" placeholder="Author Name">
+
+  <select id="category">
+    <option value="">Select Category</option>
+    <option>Fiction</option>
+    <option>Non-Fiction</option>
+    <option>Science</option>
+    <option>Technology</option>
+    <option>History</option>
+  </select>
+
+  <input type="date" id="date">
+
+  <textarea id="note" placeholder="Additional notes..."></textarea>
+
+  <button onclick="registerBook()">Register Book</button>
+
+  <p id="msg"></p>
+</div>
+
+<script>
+function registerBook() {
+  let student = document.getElementById("student").value;
+  let book = document.getElementById("book").value;
+  let author = document.getElementById("author").value;
+  let category = document.getElementById("category").value;
+  let date = document.getElementById("date").value;
+
+  if (student === "" || book === "" || author === "" || category === "" || date === "") {
+    document.getElementById("msg").style.color = "red";
+    document.getElementById("msg").innerText = "Please fill all required fields!";
+    return;
+  }
+
+  document.getElementById("msg").style.color = "green";
+  document.getElementById("msg").innerText = "Book registered successfully 📚🎉";
+}
+</script>
+
+</body>
+</html>

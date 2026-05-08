@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Course Registration Form</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: linear-gradient(120deg, #00c6ff, #0072ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-box {
+      background: white;
+      padding: 20px;
+      width: 360px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #0072ff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #msg {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-box">
+  <h2>Course Registration 🎓</h2>
+
+  <input type="text" id="name" placeholder="Full Name">
+  <input type="email" id="email" placeholder="Email">
+  <input type="text" id="phone" placeholder="Phone Number">
+
+  <select id="course">
+    <option value="">Select Course</option>
+    <option>Computer Science</option>
+    <option>Information Technology</option>
+    <option>Software Engineering</option>
+    <option>Networking</option>
+    <option>Cyber Security</option>
+  </select>
+
+  <select id="level">
+    <option value="">Select Level</option>
+    <option>Certificate</option>
+    <option>Diploma</option>
+    <option>Bachelor</option>
+  </select>
+
+  <button onclick="register()">Register</button>
+
+  <p id="msg"></p>
+</div>
+
+<script>
+function register() {
+
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let phone = document.getElementById("phone").value;
+  let course = document.getElementById("course").value;
+  let level = document.getElementById("level").value;
+
+  // ❌ validation
+  if (name === "" || email === "" || phone === "" || course === "" || level === "") {
+    document.getElementById("msg").style.color = "red";
+    document.getElementById("msg").innerText = "Please fill all fields!";
+    return;
+  }
+
+  // ✅ success message
+  document.getElementById("msg").style.color = "green";
+  document.getElementById("msg").innerText = "Course registration successful 🎉 Redirecting...";
+
+  // 🚀 redirect to book.html
+  setTimeout(() => {
+    window.location.href = "patrick-book.html";
+  }, 1500);
+}
+</script>
+
+</body>
+</html>

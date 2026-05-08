@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Registration Form</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: linear-gradient(120deg, #36d1dc, #5b86e5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-box {
+      background: white;
+      padding: 20px;
+      width: 350px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #5b86e5;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #msg {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-box">
+  <h2>Student Registration</h2>
+
+  <input type="text" id="name" placeholder="Full Name">
+  <input type="email" id="email" placeholder="Email">
+  <input type="text" id="phone" placeholder="Phone Number">
+
+  <select id="course">
+    <option value="">Select Course</option>
+    <option>Computer Science</option>
+    <option>Information System</option>
+    <option>Networking</option>
+  </select>
+
+  <input type="password" id="password" placeholder="Password">
+
+  <button onclick="register()">Register</button>
+
+  <p id="msg"></p>
+</div>
+
+<script>
+function register() {
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let phone = document.getElementById("phone").value;
+  let course = document.getElementById("course").value;
+  let password = document.getElementById("password").value;
+
+  // ❌ validation
+  if (name === "" || email === "" || phone === "" || course === "" || password === "") {
+    document.getElementById("msg").style.color = "red";
+    document.getElementById("msg").innerText = "Please fill all fields!";
+    return;
+  }
+
+  // ✅ success message
+  document.getElementById("msg").style.color = "green";
+  document.getElementById("msg").innerText = "Registration successful 🎉 Redirecting...";
+
+  // 🚀 redirect to entertainment.html
+  setTimeout(() => {
+    window.location.href = "patrick-entertainment.html";
+  }, 1500);
+}
+</script>
+
+</body>
+</html>
