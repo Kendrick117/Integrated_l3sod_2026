@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration - Innovate Co Ltd</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; padding: 20px; }
+        .container { max-width: 700px; margin: auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h2 { color: #2c3e50; text-align: center; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .section-title { font-weight: bold; margin-top: 20px; color: #3498db; text-transform: uppercase; font-size: 14px; }
+        label { display: block; margin: 10px 0 5px; font-weight: 500; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .course-list { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .course-item { background: #f1f1f1; padding: 10px; border-radius: 4px; display: flex; align-items: center; }
+        .course-item input { width: auto; margin-right: 10px; }
+        button { width: 100%; padding: 12px; background-color: #3498db; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; margin-top: 25px; }
+        button:hover { background-color: #2980b9; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Course Registration Portal</h2>
+    <form action="#" method="POST">
+        
+        <div class="section-title">Student Identification</div>
+        <label for="studentID">Student ID / Reg Number:</label>
+        <input type="text" id="studentID" name="studentID" placeholder="e.g., 22/HUYE/001" required>
+
+        <label for="semester">Current Semester:</label>
+        <select id="semester" name="semester">
+            <option value="sem1">Semester 1</option>
+            <option value="sem2">Semester 2</option>
+        </select>
+
+        <div class="section-title">Available Courses</div>
+        <p style="font-size: 13px; color: #666;">Select the modules you wish to attend this term:</p>
+        
+        <div class="course-list">
+            <div class="course-item">
+                <input type="checkbox" id="c1" name="courses" value="web_tech">
+                <label for="c1" style="margin:0;">Web Technologies</label>
+            </div>
+            <div class="course-item">
+                <input type="checkbox" id="c2" name="courses" value="db_systems">
+                <label for="c2" style="margin:0;">Database Systems</label>
+            </div>
+            <div class="course-item">
+                <input type="checkbox" id="c3" name="courses" value="java_prog">
+                <label for="c3" style="margin:0;">Java Programming</label>
+            </div>
+            <div class="course-item">
+                <input type="checkbox" id="c4" name="courses" value="cyber_sec">
+                <label for="c4" style="margin:0;">Cyber Security</label>
+            </div>
+            <div class="course-item">
+                <input type="checkbox" id="c5" name="courses" value="cloud_comp">
+                <label for="c5" style="margin:0;">Cloud Computing</label>
+            </div>
+            <div class="course-item">
+                <input type="checkbox" id="c6" name="courses" value="data_analytics">
+                <label for="c6" style="margin:0;">Data Analytics</label>
+            </div>
+        </div>
+
+        <button type="submit">Confirm Course Selection</button>
+    </form>
+</div>
+
+</body>
+</html>
